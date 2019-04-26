@@ -7,6 +7,7 @@ Hardware
 [ ] Create and finalize parts list
 [ ] Order parts
 [ ] Create CAD design for case of the Nano
+	[ ] Include removable dust filters
 [ ] Get case printed
 [ ] Assemble the device
 
@@ -23,6 +24,7 @@ Software
 [ ] Implement SARSA sub-epoch data collation
 [ ] Program stops running at market close, trains models, and
 	starts again at market open
+[ ] Bash script to get everything running on startup
 
 Twitch
 [ ] Get device capable of streaming
