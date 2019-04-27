@@ -3,7 +3,7 @@
 """
 Created on Fri Apr 26 19:19:10 2019
 
-@author: jonathan
+@author: Jonathan S. Kent
 """
 
 import torch
