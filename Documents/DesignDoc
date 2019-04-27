@@ -14,6 +14,7 @@ Hardware
 Software
 [ ] Create data pipeline to gather stock price data in real time
 [ ] Create trading algorithm to turn outputs into trades
+	[ ] LSTM Recurrent DQN
 [ ] Create visualization for trading
 	[ ] Daemons to handle visualization
 	[ ] Real-time bar chart showing relative holdings
