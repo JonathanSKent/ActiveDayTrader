@@ -15,7 +15,7 @@ import StockData
 # Graphs the percent changes of stock price multipliers over a day
 def stock_multiplier_graph(multipliers, fund_value):
     for i in range(len(multipliers)):
-        plt.plot(multipliers[i], label = Settings.stock_ticks[i].upper(), linestyle = '--')
+        plt.plot(multipliers[i], label = Settings.stock_ticks[i].upper(), linestyle = '--', alpha = 0.55)
     plt.plot(fund_value, label = 'Fund')
     plt.xlabel("Time (EST)", fontsize = 'x-large')
     plt.ylabel("Value Relative to Day Start", fontsize = 'x-large')
@@ -25,7 +25,7 @@ def stock_multiplier_graph(multipliers, fund_value):
     plt.xticks(30 * np.arange(14), Settings.xlabels, rotation = -60)
     plt.legend(loc='upper right')
     plt.savefig(Settings.ass_loc)
-    plt.figure()
+    plt.clf()
     
 # Produces a bar chart of relative stock holdings at a given time
 def current_holdings_graph(holdings):
@@ -37,4 +37,4 @@ def current_holdings_graph(holdings):
     axes = plt.gca()
     axes.set_ylim([0, 1])
     plt.savefig(Settings.hold_loc)
-    plt.figure()
+    plt.clf()

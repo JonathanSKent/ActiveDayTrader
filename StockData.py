@@ -9,6 +9,7 @@ Created on Fri Apr 26 19:11:02 2019
 from yahoo_fin import stock_info
 import torch
 import numpy as np
+import joblib
 
 import Settings
 
@@ -37,6 +38,5 @@ class data_obj:
     def tick_multiplier(self):
         return(torch.cat((self.curr_pct / self.old_pct, torch.tensor([1], dtype = torch.float32).to(Settings.device))))
         
-    
 def get_data(stocks):
     return([stock_info.get_live_price(tick) for tick in stocks])
