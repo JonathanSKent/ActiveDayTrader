@@ -24,5 +24,17 @@ def stock_multiplier_graph(multipliers, fund_value):
     axes.set_xlim([-5, Settings.minutes + 5])
     plt.xticks(30 * np.arange(14), Settings.xlabels, rotation = -60)
     plt.legend(loc='upper right')
+    plt.savefig(Settings.ass_loc)
     plt.figure()
     
+# Produces a bar chart of relative stock holdings at a given time
+def current_holdings_graph(holdings):
+    plt.bar(range(len(holdings)), holdings)
+    plt.xticks(range(len(holdings)), [i.upper() for i in Settings.stock_ticks] + ['$'])
+    plt.xlabel("Assets", fontsize = 'x-large')
+    plt.ylabel("Relative Holdings", fontsize = 'x-large')
+    plt.title("Currently Held Position", fontsize = 'xx-large')
+    axes = plt.gca()
+    axes.set_ylim([0, 1])
+    plt.savefig(Settings.hold_loc)
+    plt.figure()

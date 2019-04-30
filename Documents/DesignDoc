@@ -12,7 +12,7 @@ Hardware
 [ ] Assemble the device
 
 Software
-[ ] Create data pipeline to gather stock price data in real time
+[*] Create data pipeline to gather stock price data in real time
 [ ] Create trading algorithm to turn outputs into trades
 	[ ] LSTM Recurrent DQN
 [ ] Create visualization for trading
