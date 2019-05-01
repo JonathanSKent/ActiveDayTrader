@@ -28,7 +28,7 @@ class trade_model():
         self.optimizer = torch.optim.Adam(list(self.model1.parameters()) +
                                           list(self.lstm.parameters()) +
                                           list(self.model2.parameters()),
-                                          lr = 0.01)
+                                          lr = 0.001)
         
     def forward(self, inp):
         inp_ = self.model1(inp.to(Settings.device))

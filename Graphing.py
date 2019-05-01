@@ -22,8 +22,9 @@ def stock_multiplier_graph(multipliers, fund_value):
     plt.title("Value of Assets Relative to Day Start", fontsize = 'xx-large')
     axes = plt.gca()
     axes.set_xlim([-5, Settings.minutes + 5])
-    plt.xticks(30 * np.arange(14), Settings.xlabels, rotation = -60)
+    plt.xticks(30 * np.arange(14), Settings.xlabels, rotation = -25, fontsize = 'x-small')
     plt.legend(loc='upper right')
+    plt.tight_layout()
     plt.savefig(Settings.ass_loc)
     plt.clf()
     
@@ -36,5 +37,6 @@ def current_holdings_graph(holdings):
     plt.title("Currently Held Position", fontsize = 'xx-large')
     axes = plt.gca()
     axes.set_ylim([0, 1])
+    plt.tight_layout()
     plt.savefig(Settings.hold_loc)
     plt.clf()

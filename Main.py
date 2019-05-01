@@ -16,8 +16,8 @@ import StockData
 import Model
 import Graphing
 
-def run():
-    if os.path.isfile(Settings.model_loc):
+def run(force_new = False):
+    if os.path.isfile(Settings.model_loc) and not force_new:
         model = Model.trade_model(load = True)
     else:
         model = Model.trade_model()
@@ -29,20 +29,22 @@ def run():
     fund_value = [1]
     
     while ((datetime.datetime.now().hour < 16) and 
-        ((datetime.datetime.now().hour > 9) or 
-         ((datetime.datetime.now().hour == 9) and 
+        ((datetime.datetime.now().hour > 8) or 
+         ((datetime.datetime.now().hour == 8) and 
           (datetime.datetime.now().minute >= 30)))):
         while datetime.datetime.now().second != 0:
             time.sleep(0.5)
         
         data.update()
+        
+        tm = data.tick_multiplier()
+        
         if not first_run:
-            model.train(data.tick_multiplier())
+            model.train(tm)
             
-        fund_value.append((holdings * np.array(data.tick_multiplier().cpu())).sum() * fund_value[-1])
+        fund_value.append((holdings * np.array(tm.cpu())).sum() * fund_value[-1])
             
-        holdings = model.forward(data.curr_pct).cpu().detach().numpy().reshape([-1])
-        print(holdings)
+        holdings = model.forward(tm).cpu().detach().numpy().reshape([-1])
         Graphing.current_holdings_graph(holdings)
         Graphing.stock_multiplier_graph(np.array(data.pct_hist.t().cpu()), fund_value)
         

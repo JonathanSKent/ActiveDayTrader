@@ -29,7 +29,11 @@ class data_obj:
     def update(self):
         print("Updating stock price information...")
         self.old_pct = self.curr_pct
-        self.curr_price = get_data(self.stocks)
+        try:
+            self.curr_price = get_data(self.stocks)
+        except:
+            print("Price update error. Maintaining current prices.")
+        print("Current prices: ", np.round(np.array(self.curr_price), 2))
         self.curr_pct = torch.tensor(self.curr_price).to(Settings.device) / self.basis
         self.pct_hist = torch.cat((self.pct_hist, self.curr_pct.reshape([1, -1]).cpu()))
         print("Stock price information updated.")
