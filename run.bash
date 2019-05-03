@@ -1,5 +1,15 @@
 #!/bin/bash
-feh -x --geometry +1000+500 '/home/jonathan/Desktop/ActiveDayTrader/holdings.png' &
-feh -x '/home/jonathan/Desktop/ActiveDayTrader/assets.png'
+difference=$(($(date -d "8:29" +%s) - $(date +%s)))
 
-echo 'banana'
+echo Waiting $difference
+
+if [ $difference -lt 0 ]
+then
+    sleep $((86400 + difference))
+else
+    sleep $difference
+fi
+
+echo 'Beginning program'
+
+python3.6 '/home/jonathan/Desktop/ActiveDayTrader/Main.py'

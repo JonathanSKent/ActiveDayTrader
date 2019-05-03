@@ -15,6 +15,7 @@ class trade_model():
     def __init__(self, load = False, loc = Settings.model_loc):
         if load:
             self.model1, self.lstm, self.model2 = joblib.load(loc)
+            self.lstm.flatten_parameters()
             
         else:
             self.model1 = torch.nn.Sequential(torch.nn.Linear(5, 50),

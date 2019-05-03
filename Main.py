@@ -28,7 +28,9 @@ def run(force_new = False):
     holdings = np.array([1/6, 1/6, 1/6, 1/6, 1/6, 1/6])
     fund_value = [1]
     
-    while ((datetime.datetime.now().hour < 16) and 
+    time.sleep(90)
+    
+    while ((datetime.datetime.now().hour < 15) and 
         ((datetime.datetime.now().hour > 8) or 
          ((datetime.datetime.now().hour == 8) and 
           (datetime.datetime.now().minute >= 30)))):
@@ -44,7 +46,7 @@ def run(force_new = False):
             
         fund_value.append((holdings * np.array(tm.cpu())).sum() * fund_value[-1])
             
-        holdings = model.forward(tm).cpu().detach().numpy().reshape([-1])
+        holdings = model.forward(tm[:-1]).cpu().detach().numpy().reshape([-1])
         Graphing.current_holdings_graph(holdings)
         Graphing.stock_multiplier_graph(np.array(data.pct_hist.t().cpu()), fund_value)
         
@@ -52,3 +54,5 @@ def run(force_new = False):
             model.save()
         
         first_run = False
+        
+run()
